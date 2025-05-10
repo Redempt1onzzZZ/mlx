@@ -5,7 +5,7 @@
 #include <numeric>
 #include <sstream>
 
-#include "mlx/backend/metal/copy.h"
+#include "mlx/backend/gpu/copy.h"
 #include "mlx/backend/metal/device.h"
 #include "mlx/backend/metal/kernels.h"
 #include "mlx/backend/metal/kernels/defines.h"
@@ -952,7 +952,7 @@ void Convolution::eval_gpu(const std::vector<array>& inputs, array& out) {
         in,
         wt,
         out,
-        padding_,
+        padding_lo_,
         kernel_strides_,
         kernel_dilation_,
         input_dilation_,
@@ -967,7 +967,7 @@ void Convolution::eval_gpu(const std::vector<array>& inputs, array& out) {
         in,
         wt,
         out,
-        padding_,
+        padding_lo_,
         kernel_strides_,
         kernel_dilation_,
         input_dilation_,
@@ -983,7 +983,7 @@ void Convolution::eval_gpu(const std::vector<array>& inputs, array& out) {
         in,
         wt,
         out,
-        padding_,
+        padding_lo_,
         kernel_strides_,
         kernel_dilation_,
         input_dilation_,

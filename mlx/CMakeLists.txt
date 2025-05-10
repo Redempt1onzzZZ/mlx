@@ -49,5 +49,16 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/io)
 if(MLX_BUILD_METAL)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/backend/metal)
 else()
-  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/backend/no_metal)
+  target_sources(mlx
+                 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/backend/metal/no_metal.cpp)
+endif()
+
+if(MLX_BUILD_CUDA)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/backend/cuda)
+endif()
+
+if(MLX_BUILD_METAL OR MLX_BUILD_CUDA)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/backend/gpu)
+else()
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/backend/no_gpu)
 endif()
